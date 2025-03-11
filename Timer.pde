@@ -10,6 +10,13 @@ public class Timer {
   boolean timerStart = true;
 
   void startTimer(double miniTimerConst, double miniTimerMult) {
+    // miniTimerCost is how long you want your minigame to last, in milliseconds
+    //miniTimerMult shouldn't be set when calling this, it should be a variable from another class (probably Config) TBD
+    if (miniTimerMult < 1) {
+      miniTimerMult = 1;
+    } else if (miniTimerMult > 2) {
+      miniTimerMult = 2;
+    } // makes sure that the multiplier can't be less than 1 or greater than 2
 
     if (timerStart) {
       end = miniTimerConst / miniTimerMult; //Apply Time Left Multiplier
