@@ -5,7 +5,7 @@ class MiniGame {
     String name;
     double timerLength;
     
-    public void Minigame(boolean objComp, String name, double timerLength) {
+    MiniGame(boolean objComp, String name, double timerLength) {
         this.objectiveComplete = objComp;
         this.name = name;
         this.timerLength = timerLength;
@@ -20,6 +20,6 @@ class MiniGame {
                 return "LOSE";
             }
         }
-        return "KEEP PLAYING MAN";
+        return "Playing...";
     }
 }
