@@ -13,7 +13,6 @@ class MiniGame {
   }
   public void reset() {
     this.objectiveComplete = this.objectiveStartStatus;
-    this.timer.timerEnd = false;
     this.timer.timerStart = true;
     keyCode = 0;
   }
