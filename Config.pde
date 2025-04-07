@@ -5,21 +5,26 @@ class Config {
   public int speedUp = 0;
   public double miniTimerMult = 1;
   public int score = 0;
+  public int currentFloor = 0;
 
-  public void minigameResults (String winLose) {
-    if (winLose.equalsIgnoreCase("WIN")) {
-      score++;
-      if (score - speedUp == 10){
-        miniTimerMult += 0.2;
-        speedUp = score;
-      }
-    } else if (winLose.equalsIgnoreCase("LOSE")) {
+  public void minigameResults(String winLose) {
+    if (winLose.equalsIgnoreCase("LOSE")) {
       lives--;
       // TODO remove 1 lives icon from top
-      // TODO start next minigame
-    } else {
-      println("Something Broke...");
-    } //This should be called whenever a Minigame finishes with whether or not they lost as a string of "win" or "lose"
-    //Unfinished
+    }
+    score++;
+    this.currentFloor = score;
+    if (score - speedUp == 10) {
+      miniTimerMult += 0.2;
+      speedUp = score;
+    }
+  }
+
+  public boolean inMiniGame() {
+    boolean inGame = false;
+    if (this.score < this.currentFloor) {
+      inGame = true;
+    }
+    return inGame;
   }
 }
