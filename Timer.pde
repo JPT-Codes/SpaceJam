@@ -16,11 +16,12 @@ public class Timer {
       miniTimerMult = 1;
     } else if (miniTimerMult > 2) {
       miniTimerMult = 2;
-    } // makes sure that the multiplier can't be less than 1 or greater than 2
+    } //makes sure that the multiplier can't be less than 1 or greater than 2
 
     if (timerStart) {
+      timerEnd = false;
       end = miniTimerConst / miniTimerMult; //Apply Time Left Multiplier
-      timeLeft = (int) Math.round(end/1000); //Set time to Seconds instead of Milliseconds
+      timeLeft = (int) Math.round(end / 1000); //Set time to Seconds instead of Milliseconds
       tickTime = millis();
       secondsTime = millis();
       endTime = millis();

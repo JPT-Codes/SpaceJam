@@ -12,7 +12,9 @@ class Splash {
 
   void display() {
     if (millis() - startTime < 1000) { // hard coded 1000 millisecond
-      image(img, width/3, height/3, img.width/4, img.height/4);
+      image(img, width / 3, height / 3, img.width / 4, img.height / 4);
+    } else {
+      scene = 1;
     }
   }
 }
