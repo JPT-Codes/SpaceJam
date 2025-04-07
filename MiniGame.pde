@@ -11,10 +11,13 @@ class MiniGame {
     this.name = name;
     this.timerLength = timerLength;
   }
-  public void reset(){
+  public void reset() {
+    this.objectiveComplete = this.objectiveStartStatus;
+    this.timer.timerEnd = false;
+    this.timer.timerStart = true;
     keyCode = 0;
   }
-  
+
   public void play() {
     timer.startTimer(this.timerLength, config.miniTimerMult);
     if (timer.timerEnd) {

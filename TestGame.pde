@@ -5,18 +5,15 @@ class TestGame extends MiniGame {
   }
 
   public void reset() {
-    this.objectiveComplete = this.objectiveStartStatus;
-    keyCode = 0;
-    this.timer.timerEnd = false;
-    this.timer.timerStart = true;
+    super.reset();
   }
 
   public void play() {
     super.play();
     background(255, 0, 0);
     textAlign(CENTER);
-    text("Press Z", width / 2, height / 5);
-    if (keyCode == 90) {
+    text("Press CTRL", width / 2, height / 5);
+    if (keyCode == 17) {
       this.objectiveComplete = true;
     }
     if (this.objectiveComplete) {
