@@ -1,21 +1,26 @@
 class TestGame extends MiniGame {
-  
-  TestGame(boolean objComp, String name, double timerLength) {
-    super(objComp, name, timerLength);
+
+  TestGame(boolean objStart, String name, double timerLength) {
+    super(objStart, name, timerLength);
   }
 
-  public String play() {
+  public void reset() {
+    this.objectiveComplete = this.objectiveStartStatus;
+    keyCode = 0;
+    this.timer.timerEnd = false;
+    this.timer.timerStart = true;
+  }
+
+  public void play() {
     super.play();
     background(255, 0, 0);
     textAlign(CENTER);
     text("Press Z", width / 2, height / 5);
-    if (keyPressed && keyCode == 90) {
+    if (keyCode == 90) {
       this.objectiveComplete = true;
-      System.out.println("boop");
     }
     if (this.objectiveComplete) {
-      background(0, 255, 0);
+      background(0, 100, 0);
     }
-    return "Playing...";
   }
 }
