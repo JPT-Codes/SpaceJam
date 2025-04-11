@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 class MiniGames {
   TestGame testGame = new TestGame(false, "testGame", 3000);
   int numOfGames = 1;

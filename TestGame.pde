@@ -11,6 +11,7 @@ class TestGame extends MiniGame {
   public void play() {
     super.play();
     background(255, 0, 0);
+    textSize(40);
     textAlign(CENTER);
     text("Press CTRL", width / 2, height / 5);
     if (config.keys[0]) {

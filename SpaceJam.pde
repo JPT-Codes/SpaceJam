@@ -1,4 +1,5 @@
 Config config;
+UI ui;
 Splash splash;
 MiniGames gameList;
 int scene = 0;
@@ -9,6 +10,7 @@ void settings() {
 
 void setup() {
   config = new Config();
+  ui= new UI();
   splash = new Splash();
   splash.preload();
   surface.setSize(config.windowWidth, config.windowHeight);
@@ -25,5 +27,8 @@ void draw() {
   //TODO pull the MainMenu class and display
   if (scene == 1) {
     gameList.startMiniGame();
+    ui.showLives();
+    ui.showLevel();
+    ui.showTimer(gameList.miniGames[gameList.currentGame].timer);
   }
 }
