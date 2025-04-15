@@ -7,7 +7,7 @@ class AilenLibrarian extends MiniGame {
   String[] controls = {"CTRL", "LEFT", "UP", "RIGHT", "DOWN"};
 
   AilenLibrarian(boolean objStart, String name, double timerLength) {
-    super(objStart, name, timerLength); //false, alienLib , 3000
+    super(objStart, name, timerLength);
   }
 
   public void reset() {
@@ -37,7 +37,6 @@ class AilenLibrarian extends MiniGame {
 
     for (int i = 0; i < colors.length; i++) {
       fill(colors[i]);
-      //makes 5 rect. how do we differentiate (hope i spelt right) the different "books"
       stroke(0);
       strokeWeight(1);
       rectMode(CENTER);
@@ -51,18 +50,8 @@ class AilenLibrarian extends MiniGame {
 
 
     if (youAlreadyWentFool == false) {
-      if ( config.keys[0] && foundBookYippee == 0) {
+      if (config.keys[foundBookYippee]) {
         this.objectiveComplete = true;
-      } else if ( config.keys[1] && foundBookYippee == 1) {
-        this.objectiveComplete = true;
-      } else if ( config.keys[2] && foundBookYippee == 2) {
-        this.objectiveComplete = true;
-      } else if ( config.keys[3] && foundBookYippee == 3) {
-        this.objectiveComplete = true;
-      } else if ( config.keys[4] && foundBookYippee == 4) {
-        this.objectiveComplete = true;
-      } else if (!objectiveComplete) {
-        this.objectiveComplete = false;
       }
       if (keyPressed) {
         youAlreadyWentFool = true;
@@ -84,6 +73,3 @@ class AilenLibrarian extends MiniGame {
     }
   }
 }
-
-
-//fill(194, 155, 108);
