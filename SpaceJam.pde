@@ -1,16 +1,34 @@
-void settings(){
- fullScreen(); 
+Config config;
+UI ui;
+Splash splash;
+MiniGames gameList;
+int scene = 0;
+
+void settings() {
+  fullScreen();
 }
 
-void setup(){
-  // Change these to the attributes from the
-  // Config class.
-  surface.setSize(1920, 1080);
+void setup() {
+  config = new Config();
+  ui= new UI();
+  splash = new Splash();
+  splash.preload();
+  surface.setSize(config.windowWidth, config.windowHeight);
+  gameList = new MiniGames();
   //surface.setLocation(0, 0);
 }
 
-void draw(){
-  // TODO pull the SplashScreen class and display
-  
-  // TODO pull the MainMenu class and display
+void draw() {
+  //TODO pull the SplashScreen class and display
+  background(255);
+  if (scene == 0) {
+    splash.display();
+  }
+  //TODO pull the MainMenu class and display
+  if (scene == 1) {
+    gameList.startMiniGame();
+    ui.showLives();
+    ui.showLevel();
+    ui.showTimer(gameList.miniGames[gameList.currentGame].timer);
+  }
 }
