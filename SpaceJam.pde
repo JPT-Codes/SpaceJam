@@ -2,7 +2,7 @@ Config config;
 UI ui;
 Splash splash;
 MiniGames gameList;
-int scene = 0;
+int scene = 1;
 
 void settings() {
   fullScreen();
@@ -27,8 +27,6 @@ void draw() {
   //TODO pull the MainMenu class and display
   if (scene == 1) {
     gameList.startMiniGame();
-    ui.showLives();
-    ui.showLevel();
-    ui.showTimer(gameList.miniGames[gameList.currentGame].timer);
+    ui.showUI(gameList.miniGames[gameList.currentGame].timer);
   }
 }
