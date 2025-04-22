@@ -4,7 +4,7 @@ class TestYourStrength extends MiniGame {
   private int latch = 0;
 
   TestYourStrength(boolean objStart, String name, double timerLength) {
-    super(objStart, name, timerLength); //false, testStrength, 3000
+    super(objStart, name, timerLength);
   }
 
   private void zIncrement() {
