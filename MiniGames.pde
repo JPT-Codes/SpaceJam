@@ -2,9 +2,10 @@ class MiniGames {
   MiniGame testGame = new TestGame(false, "testGame", 3000);
   MiniGame testYourStrength = new TestYourStrength(false, "testStrength", 3000);
   MiniGame alienLibrarian = new AlienLibrarian(false, "AlienLibrarian", 5000);
-  int numOfGames = 3;
+  MiniGame cyberspace = new Cyberspace(false, "Cyberspace", 10000); 
+  int numOfGames = 4;
   int currentGame;
-  MiniGame[] miniGames = {testGame, testYourStrength, alienLibrarian};
+  MiniGame[] miniGames = {cyberspace, testGame, testYourStrength, alienLibrarian};
   ArrayList<String> recentGames = new ArrayList<String>();
 
   public void miniGameChooser() {
