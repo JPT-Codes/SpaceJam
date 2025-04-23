@@ -1,16 +1,17 @@
-import java.util.ArrayList;
-
 class MiniGames {
-  TestGame testGame = new TestGame(false, "testGame", 3000);
-  int numOfGames = 1;
+  MiniGame testGame = new TestGame(false, "testGame", 3000);
+  MiniGame testYourStrength = new TestYourStrength(false, "testStrength", 3000);
+  MiniGame alienLibrarian = new AlienLibrarian(false, "AlienLibrarian", 5000);
+  MiniGame cyberspace = new Cyberspace(false, "Cyberspace", 10000); 
+  int numOfGames = 4;
   int currentGame;
-  MiniGame[] miniGames = {testGame};
+  MiniGame[] miniGames = {cyberspace, testGame, testYourStrength, alienLibrarian};
   ArrayList<String> recentGames = new ArrayList<String>();
 
   public void miniGameChooser() {
     int randGame;
     do {
-      randGame = (int)random(numOfGames - 1);
+      randGame = (int)random(numOfGames);
     } while (/*recentGames.contains(miniGames[randGame].name*/ false);
     recentGames.add(miniGames[randGame].name);
     this.purgeRecentGames();
