@@ -99,9 +99,9 @@ class SpaceShipDefense extends MiniGame {
       
       // Complete Minigame
       if (asteroidsBlocked >= 2) {
-        objectiveComplete = false;
-      } else {
         objectiveComplete = true;
+      } else {
+        objectiveComplete = false;
     }
   }
 }
