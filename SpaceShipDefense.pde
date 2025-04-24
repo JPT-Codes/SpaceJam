@@ -9,7 +9,6 @@ class SpaceShipDefense extends MiniGame {
   int startupDelay = 0;
   Asteroids[] asteroids = new Asteroids[2];
   boolean shipDestroyed = false;
-  boolean objectiveComplete;
 
   SpaceShipDefense(boolean objStart, String name, double timerLength) {
     super(objStart, name, timerLength);
@@ -22,13 +21,13 @@ class SpaceShipDefense extends MiniGame {
     asteroidsBlocked = 0;
     startupDelay = 0;
     shipDestroyed = false;
-    objectiveComplete = false;
   }
 
   public void play() {
     super.play();
     background(25);
-
+    
+    // Asteroid Creation
     if (startupDelay < asteroids.length) {
       for (int i = 0; i < asteroids.length; i++) {
         asteroids[i] = new Asteroids();
@@ -37,15 +36,12 @@ class SpaceShipDefense extends MiniGame {
       }
     }
     
-    System.out.println(objectiveComplete);
-    System.out.println(asteroidsBlocked);
-    System.out.println(asteroids.length);
-
-    if (!shipDestroyed && !objectiveComplete && keyPressed && key == CODED && keyCode == UP && astronautYSpeed >= -5) {
+    // Movement
+    if (!shipDestroyed && objectiveComplete && keyPressed && key == CODED && keyCode == UP && astronautYSpeed >= -5) {
       astronautYSpeed -= 0.2;
     }
 
-    if (!shipDestroyed && !objectiveComplete && keyPressed && key == CODED && keyCode == DOWN && astronautYSpeed <= 5) {
+    if (!shipDestroyed && objectiveComplete && keyPressed && key == CODED && keyCode == DOWN && astronautYSpeed <= 5) {
       astronautYSpeed += 0.2;
     }
 
@@ -55,23 +51,25 @@ class SpaceShipDefense extends MiniGame {
       astronautYSpeed += 0.1;
     }
 
-    if (shipDestroyed || objectiveComplete) {
+    if (shipDestroyed || !objectiveComplete) {
       if (!keyPressed && astronautYSpeed > 0) {
         astronautYSpeed -= 0.1;
       } else if (!keyPressed && astronautYSpeed < 0) {
         astronautYSpeed += 0.1;
       }
     }
-
+    
+    // Show Asteroids
     for (int i = 0; i < asteroids.length; i++) {
       asteroids[i].show();
 
-
+      // Check If Ship Is Destroyed
       if (asteroids[i].x <= 200 && !asteroids[i].asteroidDestroyed) {
         asteroids[i].destroyShip();
         shipDestroyed = true;
       }
-
+      
+      // Block Asteroids
       if (asteroids[i].x - asteroids[i].radius <= astronautX
         && asteroids[i].x + asteroids[i].radius >= astronautX
         && asteroids[i].y - asteroids[i].radius <= astronautY
@@ -79,7 +77,8 @@ class SpaceShipDefense extends MiniGame {
         asteroids[i].destroyAsteroid();
         asteroidsBlocked++;
       }
-
+    
+      // Top and Bottom Walls
       if (astronautY + astronautHeight/2 > config.windowHeight) {
         astronautYSpeed = 0;
         astronautY = config.windowHeight - astronautHeight/2;
@@ -87,7 +86,8 @@ class SpaceShipDefense extends MiniGame {
         astronautYSpeed = 0;
         astronautY = astronautHeight/2;
       }
-
+      
+      // Create All Objects
       astronautY += astronautYSpeed;
       rectMode(CENTER);
       fill(0, 0, 150);
@@ -96,17 +96,18 @@ class SpaceShipDefense extends MiniGame {
       rect(astronautX, astronautY, astronautWidth, astronautHeight);
       ellipse(astronautX, astronautY, astronautWidth, astronautHeight);
     }
-
-      if (asteroidsBlocked == asteroids.length) {
-        objectiveComplete = true;
-      } else if (shipDestroyed) {
+      
+      // Complete Minigame
+      if (asteroidsBlocked >= 2) {
         objectiveComplete = false;
+      } else {
+        objectiveComplete = true;
     }
   }
 }
 
 
-class Asteroids {
+class Asteroids { // Math
   float speed = random(8, 10);
   float x = config.windowWidth + (200 * random(1, 8));
   float y = random(config.windowHeight);
@@ -121,21 +122,21 @@ class Asteroids {
   boolean asteroidDestroyed = false;
 
   public void show() {
-    if (!asteroidDestroyed) {
+    if (!asteroidDestroyed) { // Make Asteroid Disappear
       fill(200);
       noStroke();
       circle(x, y, radius);
-    }
+    } // Movement
     x += round(dx);
     y += round(dy);
   }
 
-  public void destroyAsteroid() {
+  public void destroyAsteroid() { // Destroy The Asteroid
     asteroidDestroyed = true;
     y = 2000;
   }
 
-  public void destroyShip() {
+  public void destroyShip() { // Player Fails To Block Asteroid
     x = 2000;
     y = -2000;
     dx = 0;
