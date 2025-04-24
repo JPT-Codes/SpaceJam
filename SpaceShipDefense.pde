@@ -37,11 +37,11 @@ class SpaceShipDefense extends MiniGame {
     }
     
     // Movement
-    if (!shipDestroyed && objectiveComplete && keyPressed && key == CODED && keyCode == UP && astronautYSpeed >= -5) {
+    if (!shipDestroyed && !objectiveComplete && keyPressed && key == CODED && keyCode == UP && astronautYSpeed >= -5) {
       astronautYSpeed -= 0.2;
     }
 
-    if (!shipDestroyed && objectiveComplete && keyPressed && key == CODED && keyCode == DOWN && astronautYSpeed <= 5) {
+    if (!shipDestroyed && !objectiveComplete && keyPressed && key == CODED && keyCode == DOWN && astronautYSpeed <= 5) {
       astronautYSpeed += 0.2;
     }
 
@@ -51,7 +51,7 @@ class SpaceShipDefense extends MiniGame {
       astronautYSpeed += 0.1;
     }
 
-    if (shipDestroyed || !objectiveComplete) {
+    if (shipDestroyed || objectiveComplete) {
       if (!keyPressed && astronautYSpeed > 0) {
         astronautYSpeed -= 0.1;
       } else if (!keyPressed && astronautYSpeed < 0) {
