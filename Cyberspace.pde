@@ -4,7 +4,9 @@ class Cyberspace extends MiniGame {
   ArrayList<Targets> targets = new ArrayList<Targets>();
   ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
   Shooter player;
-  int position = 0;
+  int pos, proCount;
+  
+  int total = 5;
 
   Cyberspace(boolean objStart, String name, double timerLength) {
     super(objStart, name, timerLength);
@@ -21,8 +23,8 @@ class Cyberspace extends MiniGame {
 
     targets.clear();
 
-    for (int i = 0; i < 3; i++) {
-      targets.add(new Targets(((i + 1) * (width / 4)) + random(0 - 30, 30), random((height / 10) + 30, (height / 2) - 60)));
+    for (int i = 0; i < total; i++) {
+      targets.add(new Targets(((i + 1) * (width / (total + 1))) + random(0 - 25, 25), random((height / 10) + 25,(height / 2) - 50)));
     }
 
     player = new Shooter();
@@ -52,20 +54,24 @@ class Cyberspace extends MiniGame {
         }
       }
     }
-
+    
     if (config.keys[0]) {
-      if (frameCount % 10 == 0) {
-        projectiles.add(new Projectile(position));
+      if (proCount == 0 || proCount % 10 == 0) {
+        projectiles.add(new Projectile(pos));
       }
+      proCount += 1;
+    }
+    if (!config.keys[0]) {
+      proCount = 0;
     }
     if (config.keys[1]) {
-      position -= 20;
+      pos -= 10;
     }
     if (config.keys[3]) {
-      position += 20;
+      pos += 10;
     }
-
-    player.show(position);
+    
+    player.show(pos);
 
     if (targets.size() == 0) {
       objectiveComplete = true;
@@ -88,10 +94,12 @@ class Projectile {
     noStroke();
     fill(255);
     beginShape();
-    vertex(this.posX - 3, this.posY);
-    vertex(this.posX - 3, this.posY + 15);
-    vertex(this.posX + 3, this.posY + 15);
-    vertex(this.posX + 3, this.posY);
+    vertex(this.posX, this.posY);
+    vertex(this.posX - 3, this.posY + 3);
+    vertex(this.posX - 3, this.posY + 16);
+    vertex(this.posX, this.posY + 19);
+    vertex(this.posX + 3, this.posY + 16);
+    vertex(this.posX + 3, this.posY + 3);
     endShape(CLOSE);
     this.posY -= 15;
   }
@@ -119,9 +127,13 @@ class Shooter {
     fill(255);
     beginShape();
     vertex(this.posX, y);
+    vertex(this.posX - 6.5, y + 15);
     vertex(this.posX - 15, y + 30);
-    vertex(this.posX, y + 20);
+    vertex(this.posX - 5, y + 23);
+    vertex(this.posX, y + 26);
+    vertex(this.posX + 5, y + 23);
     vertex(this.posX + 15, y + 30);
+    vertex(this.posX + 6.5, y + 15);
     endShape(CLOSE);
   }
 }
@@ -136,6 +148,7 @@ class Stars {
   }
 
   void blink() {
+    strokeWeight(4);
     if (random(1) < 0.001) {
       stroke(0);
     } else {
@@ -147,22 +160,42 @@ class Stars {
 
 class Targets {
 
-  int x, y;
+  int x, y, s;
 
   Targets(float x, float y) {
     this.x = (int)x;
     this.y = (int)y;
+    this.s = 65 / 2;
   }
 
   void show() {
     stroke(215, 0, 0);
     strokeWeight(5);
     fill(255, 0, 0);
-    square(this.x, this.y, 60);
+    rectMode(CENTER);
+    rect(this.x, this.y, this.s * 2, this.s * 2);
+    
+    for (int i = 0; i < 3; i++) {
+      if (i == 0) {
+        strokeWeight(3);
+      } else if (i == 1) {
+        strokeWeight(0);
+        fill(0);
+      } else {
+        fill(255);
+      }
+            
+      beginShape();
+      vertex(this.x - this.s + (i * 13), this.y);
+      vertex(this.x, this.y - this.s + (i * 13));
+      vertex(this.x + this.s - (i * 13), this.y);
+      vertex(this.x, this.y + this.s - (i * 13));
+      endShape(CLOSE);
+    }
   }
 
   boolean collision(Projectile other) {
-    if (this.x <= other.posX && this.y <= other.posY && this.x + 60 >= other.posX && this.y + 60 >= other.posY) {
+    if (this.x - this.s <= other.posX && this.y - this.s <= other.posY && this.x + this.s >= other.posX && this.y + this.s >= other.posY) {
       return true;
     } else {
       return false;
