@@ -24,8 +24,8 @@ class UI {
       text("Time Left: " + time.timeLeft, 105, height - 20);
     }
   }
-  
-  void showUI(Timer time){
+
+  void showUI(Timer time) {
     rectMode(CORNER);
     textAlign(CENTER, BASELINE);
     ui.showLives();

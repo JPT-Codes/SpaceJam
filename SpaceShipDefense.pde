@@ -26,7 +26,7 @@ class SpaceShipDefense extends MiniGame {
   public void play() {
     super.play();
     background(25);
-    
+
     // Asteroid Creation
     if (startupDelay < asteroids.length) {
       for (int i = 0; i < asteroids.length; i++) {
@@ -35,7 +35,7 @@ class SpaceShipDefense extends MiniGame {
         startupDelay += 1;
       }
     }
-    
+
     // Movement
     if (!shipDestroyed && !objectiveComplete && keyPressed && key == CODED && keyCode == UP && astronautYSpeed >= -5) {
       astronautYSpeed -= 0.2;
@@ -58,7 +58,7 @@ class SpaceShipDefense extends MiniGame {
         astronautYSpeed += 0.1;
       }
     }
-    
+
     // Show Asteroids
     for (int i = 0; i < asteroids.length; i++) {
       asteroids[i].show();
@@ -68,7 +68,7 @@ class SpaceShipDefense extends MiniGame {
         asteroids[i].destroyShip();
         shipDestroyed = true;
       }
-      
+
       // Block Asteroids
       if (asteroids[i].x - asteroids[i].radius <= astronautX
         && asteroids[i].x + asteroids[i].radius >= astronautX
@@ -77,7 +77,7 @@ class SpaceShipDefense extends MiniGame {
         asteroids[i].destroyAsteroid();
         asteroidsBlocked++;
       }
-    
+
       // Top and Bottom Walls
       if (astronautY + astronautHeight/2 > config.windowHeight) {
         astronautYSpeed = 0;
@@ -86,7 +86,7 @@ class SpaceShipDefense extends MiniGame {
         astronautYSpeed = 0;
         astronautY = astronautHeight/2;
       }
-      
+
       // Create All Objects
       astronautY += astronautYSpeed;
       rectMode(CENTER);
@@ -96,12 +96,12 @@ class SpaceShipDefense extends MiniGame {
       rect(astronautX, astronautY, astronautWidth, astronautHeight);
       ellipse(astronautX, astronautY, astronautWidth, astronautHeight);
     }
-      
-      // Complete Minigame
-      if (asteroidsBlocked >= 2) {
-        objectiveComplete = true;
-      } else {
-        objectiveComplete = false;
+
+    // Complete Minigame
+    if (asteroidsBlocked >= 2) {
+      objectiveComplete = true;
+    } else {
+      objectiveComplete = false;
     }
   }
 }
