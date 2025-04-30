@@ -5,16 +5,17 @@ class MiniGames {
   MiniGame pressAllArrows = new PressAllArrows(false, "PressAllArrows", 5000);
   MiniGame cyberspace = new Cyberspace(false, "Cyberspace", 10000);
   MiniGame spaceShipDefense = new SpaceShipDefense(true, "SpaceShipDefense", 8000);
-  int numOfGames = 6;
+  MiniGame alienPolitician = new AlienPolitician(true, "AlienPolitician", 3000);
+  int numOfGames = 7;
   int currentGame;
-  MiniGame[] miniGames = {testGame, testYourStrength, alienLibrarian, pressAllArrows, cyberspace, spaceShipDefense};
+  MiniGame[] miniGames = {testGame, testYourStrength, alienLibrarian, pressAllArrows, cyberspace, spaceShipDefense, alienPolitician};
   ArrayList<String> recentGames = new ArrayList<String>();
 
   public void miniGameChooser() {
     int randGame;
     do {
       randGame = (int)random(numOfGames);
-    } while (/*recentGames.contains(miniGames[randGame].name*/ false);
+    } while (recentGames.contains(miniGames[randGame].name));
     recentGames.add(miniGames[randGame].name);
     this.purgeRecentGames();
     currentGame = randGame;
