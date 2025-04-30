@@ -5,7 +5,7 @@ class Cyberspace extends MiniGame {
   ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
   Shooter player;
   int pos, proCount;
-  
+
   int total = 5;
 
   Cyberspace(boolean objStart, String name, double timerLength) {
@@ -16,6 +16,9 @@ class Cyberspace extends MiniGame {
     super.reset();
     // Put what your minigame needs to reset each time it is played here.
 
+    pos = 0;
+    proCount = 0;
+
     for (int i = 0; i < stars.length; i++) {
       stars[i] = new Stars();
       stars[i].show();
@@ -24,7 +27,7 @@ class Cyberspace extends MiniGame {
     targets.clear();
 
     for (int i = 0; i < total; i++) {
-      targets.add(new Targets(((i + 1) * (width / (total + 1))) + random(0 - 25, 25), random((height / 10) + 25,(height / 2) - 50)));
+      targets.add(new Targets(((i + 1) * (width / (total + 1))) + random(0 - 25, 25), random((height / 10) + 25, (height / 2) - 50)));
     }
 
     player = new Shooter();
@@ -54,9 +57,9 @@ class Cyberspace extends MiniGame {
         }
       }
     }
-    
+
     if (config.keys[0]) {
-      if (proCount == 0 || proCount % 10 == 0) {
+      if (proCount == 0 || proCount % 6 == 0) {
         projectiles.add(new Projectile(pos));
       }
       proCount += 1;
@@ -70,7 +73,7 @@ class Cyberspace extends MiniGame {
     if (config.keys[3]) {
       pos += 10;
     }
-    
+
     player.show(pos);
 
     if (targets.size() == 0) {
@@ -174,7 +177,7 @@ class Targets {
     fill(255, 0, 0);
     rectMode(CENTER);
     rect(this.x, this.y, this.s * 2, this.s * 2);
-    
+
     for (int i = 0; i < 3; i++) {
       if (i == 0) {
         strokeWeight(3);
@@ -184,7 +187,7 @@ class Targets {
       } else {
         fill(255);
       }
-            
+
       beginShape();
       vertex(this.x - this.s + (i * 13), this.y);
       vertex(this.x, this.y - this.s + (i * 13));
