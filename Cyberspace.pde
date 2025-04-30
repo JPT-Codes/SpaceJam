@@ -16,6 +16,9 @@ class Cyberspace extends MiniGame {
     super.reset();
     // Put what your minigame needs to reset each time it is played here.
 
+    pos = 0;
+    proCount = 0;
+
     for (int i = 0; i < stars.length; i++) {
       stars[i] = new Stars();
       stars[i].show();
@@ -56,7 +59,7 @@ class Cyberspace extends MiniGame {
     }
 
     if (config.keys[0]) {
-      if (proCount == 0 || proCount % 10 == 0) {
+      if (proCount == 0 || proCount % 6 == 0) {
         projectiles.add(new Projectile(pos));
       }
       proCount += 1;
