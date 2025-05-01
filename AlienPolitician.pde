@@ -154,7 +154,6 @@ class AlienPolitician extends MiniGame {
     ducker();
     politician();
     crowd();
-    print(startDuck);
 
     questionDodge();
   }
