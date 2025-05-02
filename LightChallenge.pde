@@ -1,4 +1,4 @@
-public class LightChallenge extends MiniGame {
+class LightChallenge extends MiniGame {
 
   Particles[] particles = new Particles[60];
   Cursor player;
@@ -7,10 +7,9 @@ public class LightChallenge extends MiniGame {
   boolean[] movement = {true, true, true, true};
   boolean result = false;
 
-  int[][] coords = {{ - 1, -1}, {0, -1}, {1, -1}, { - 1, 0}, {0, 0}, {1, 0}, { - 1, 1}, {0, 1}, {1, 1} };
-  int index = (int)random(coords.length);
-  int posX = coords[index][0];
-  int posY = coords[index][1];
+  int index = (int)random(9);
+  int posX = (index % 3) - 1;
+  int posY = (index / 3) - 1;
   int score = 9;
 
   color c = color(219, 229, 241);
@@ -26,9 +25,9 @@ public class LightChallenge extends MiniGame {
 
     if (result) {
       result = false;
-      index = (int)random(coords.length);
-      posX = coords[index][0];
-      posY = coords[index][1];
+      index = (int)random(9);
+      posX = (index % 3) - 1;
+      posY = (index / 3) - 1;
       score = 9;
       c = color(219, 229, 241);
     }
