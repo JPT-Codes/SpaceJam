@@ -7,9 +7,10 @@ class MiniGames {
   MiniGame spaceShipDefense = new SpaceShipDefense(true, "SpaceShipDefense", 8000);
   MiniGame alienPolitician = new AlienPolitician(true, "AlienPolitician", 3000);
   MiniGame lightChallenge = new LightChallenge(false, "LightChallenge", 4000);
-  int numOfGames = 8;
+  MiniGame circleFill = new CircleFill(false, "CircleFill", 7000);
+  int numOfGames = 9;
   int currentGame;
-  MiniGame[] miniGames = {testGame, testYourStrength, alienLibrarian, pressAllArrows, cyberspace, spaceShipDefense, alienPolitician, lightChallenge};
+  MiniGame[] miniGames = {testGame, testYourStrength, alienLibrarian, pressAllArrows, cyberspace, spaceShipDefense, alienPolitician, lightChallenge, circleFill};
   ArrayList<String> recentGames = new ArrayList<String>();
 
   public void miniGameChooser() {
