@@ -11,8 +11,8 @@ class TestYourStrength extends MiniGame {
     if (config.keys[0] && latch == 0) {
       zCount++;
       latch = 1;
-    } else if(!config.keys[0]) {
-      latch = 0;  
+    } else if (!config.keys[0]) {
+      latch = 0;
     }
   }
 
