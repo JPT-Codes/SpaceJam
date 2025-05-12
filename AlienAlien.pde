@@ -20,23 +20,23 @@ class AlienAlien extends MiniGame {
   int chaseLightW = 125;
   int chaseLightH = 125;
 
-  int shipX = width/2;
-  int shipY = 150;
+  int shipX = width/2 -50;
+  int shipY = 75;
   int shipW = 100;
   int shipH = 150;
 
   float youCantEscape = 1;
   float chaserYouCantEscape = 0;
   int imGettingMAD = 0;
-  
+
   int yAiming = 9;
   int xAiming = 3;
 
   int spotFlash = 255;
   int fillerLight = 255;
-  
+
   boolean STUNNED = false;
-  
+
   int alienRuns = 0;
 
 
@@ -51,6 +51,8 @@ class AlienAlien extends MiniGame {
 
     alienX = width/2;
     alienY = 1000;
+    alienSpeed = 6;
+    
     youCantEscape = 1;
     imGettingMAD = 0;
 
@@ -64,24 +66,17 @@ class AlienAlien extends MiniGame {
     chaseLightX = width/2;
     chaseLightY = height/2;
 
-    chaserYouCantEscape = 1.25;
+    chaserYouCantEscape = 4;
     yAiming = 7;
     xAiming = 4;
-    
-    //future run proof concept
-    //it essentially means every 5 more runs (after 5), get 1 extra pixel speed
-    if (alienRuns > 5) {
-      alienSpeed = (6 + alienRuns / 5) - 1;
-    } else {
-      alienSpeed = 6;
-    }
+
     STUNNED = false;
   }
 
   private void alien() {
     //mr gross picked this for our nefarious alien
     fill(#cdc1cb);
-    
+
     //make alien and controls
     rect(alienX, alienY, alienW, alienH);
     if (config.keys[2]) {
@@ -96,6 +91,10 @@ class AlienAlien extends MiniGame {
     if (config.keys[3]) {
       alienX += alienSpeed;
     }
+    /*if (config.keys[1] && config.keys[2]) {
+    alienX -= alienSpeed;
+    alienY -= alienSpeed;
+    }*/
 
 
     //if spotLights hit you and stun, you recover here VERY slowly.
@@ -103,30 +102,30 @@ class AlienAlien extends MiniGame {
       //watch in horror as you're caught type of speed increase.
       alienSpeed += .05;
     }
-    
+
     //very basic edge wall collision
-    if (alienX > width){
-    alienX -= 10;
+    if (alienX > width) {
+      alienX -= 10;
     }
-    if (alienX < 0){
-    alienX += 10;
+    if (alienX < 0) {
+      alienX += 10;
     }
-    if (alienY > height){
-    alienY -= 10;
+    if (alienY > height) {
+      alienY -= 10;
     }
-    if (alienY < 0){
-    alienY += 10;
+    if (alienY < 0) {
+      alienY += 10;
     }
   }
 
   private void whereIsAlien() {
     //x axis launcher light
-    
-    rectMode(CENTER);
+
+    rectMode(CORNER);
     rect(spotLightX, spotLightY, spotLightW, spotLightH);
     fill(spotFlash, spotFlash, fillerLight);
     //makes it look like spotlight (but it's a square!!!!) :evil:
-    circle(spotLightX, spotLightY, 250);
+    circle(spotLightX + 87.5, spotLightY + 87.5, 250);
 
     //example: if y is up or down from alien, move down/up to meet him
 
@@ -148,7 +147,7 @@ class AlienAlien extends MiniGame {
     //vertlight; follows same idea
 
     rect(vertLightX, vertLightY, vertLightW, vertLightH);
-    circle(vertLightX, vertLightY, 250);
+    circle(vertLightX + 87.5, vertLightY + 87.5, 250);
 
     if (vertLightY < alienY) {
       vertLightY+= youCantEscape - 1;
@@ -163,8 +162,8 @@ class AlienAlien extends MiniGame {
 
 
     //chaser light
-    
-    
+
+
     if (STUNNED == false) {
       //flashes red when it starts to move faster. otherwise its just white
       fill(spotFlash, fillerLight, fillerLight);
@@ -174,10 +173,10 @@ class AlienAlien extends MiniGame {
       fill(random(100, 255), 0, 0);
     }
     rect(chaseLightX, chaseLightY, chaseLightW, chaseLightH);
-    circle(chaseLightX, chaseLightY, 175);
-    
+    circle(chaseLightX + 62.5, chaseLightY + 62.5, 175);
+
     //same as other lights, but it can go backwards as well to meet you
-    
+
     if (chaseLightY < alienY) {
       chaseLightY+= chaserYouCantEscape;
     } else if (chaseLightY > alienY) {
@@ -196,20 +195,16 @@ class AlienAlien extends MiniGame {
     if (imGettingMAD == 0) {
       imGettingMAD = frameCount;
     }
-    //15 guaranteed frames plus a random extra amount up to one second before the lights kick in
-    if (frameCount > imGettingMAD + 15 + (int)random(60)) {
+    //BUFF: 18 guaranteed frames plus a random extra amount up to BUFF: 72 frames before the lights kick in
+    if (frameCount > imGettingMAD + 18 + (int)random(72)) {
       //increases launcher lights speeds by 2 pixels every frame.
       youCantEscape += 2 ;
       //if not stunned, increase chaser by .025 every frame up to a cap .5 slower than base player
-      if (!STUNNED) {
-        if (chaserYouCantEscape < alienSpeed - .5) {
-          chaserYouCantEscape += .025;
-        }
-      } else {
-        if (chaserYouCantEscape < 15) {
-          chaserYouCantEscape ++;
-        }
-      }
+      
+      //chase formula is GONE
+      //chaser light is now at a base speed. we'll see how this works
+      
+      
       //the y/x is disabled for the launching lights
       yAiming = 0;
       xAiming = 0;
@@ -230,7 +225,7 @@ class AlienAlien extends MiniGame {
     //the rest is cosmetic
     fill(75);
     triangle(width/2 - 50, 75, width/2 + 50, 75, width/2, 25 );
-    rect(width/2, 250, 75, 50);
+    rect(width/2 -38, 225, 75, 50);
     fill(0, 200, 200);
     circle(width/2, 130, 50);
   }
@@ -238,7 +233,10 @@ class AlienAlien extends MiniGame {
   //x, y, w, h for the two rectangles colliding
   private boolean hitDetect(int x1, int y1, int w1, int h1, int x2, int y2, int w2, int h2) {
     //aabb collision check from online (to save time)
-    if (x1 < x2 + w2 && x2 < x1 + w1 && y1 < y2 + h2 && y2 < y1 + h1) {
+    if (x1 < x2 + w2 &&
+      x1 + w1 > x2 &&
+      y1 < y2 + h2 &&
+      y1 + h1 > y2) {
       return true;
     } else {
 
