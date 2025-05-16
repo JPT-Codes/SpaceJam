@@ -52,7 +52,7 @@ class AlienAlien extends MiniGame {
     alienX = width/2;
     alienY = 1000;
     alienSpeed = 6;
-    
+
     youCantEscape = 1;
     imGettingMAD = 0;
 
@@ -92,9 +92,9 @@ class AlienAlien extends MiniGame {
       alienX += alienSpeed;
     }
     /*if (config.keys[1] && config.keys[2]) {
-    alienX -= alienSpeed;
-    alienY -= alienSpeed;
-    }*/
+     alienX -= alienSpeed;
+     alienY -= alienSpeed;
+     }*/
 
 
     //if spotLights hit you and stun, you recover here VERY slowly.
@@ -200,11 +200,11 @@ class AlienAlien extends MiniGame {
       //increases launcher lights speeds by 2 pixels every frame.
       youCantEscape += 2 ;
       //if not stunned, increase chaser by .025 every frame up to a cap .5 slower than base player
-      
+
       //chase formula is GONE
       //chaser light is now at a base speed. we'll see how this works
-      
-      
+
+
       //the y/x is disabled for the launching lights
       yAiming = 0;
       xAiming = 0;

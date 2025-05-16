@@ -28,15 +28,15 @@ class CircleFill extends MiniGame {
     popMatrix();
   }
   void keycheck() {
-    if (config.keys[0] == true && latch == 0){
+    if (config.keys[0] == true && latch == 0) {
       act += 1;
       latch = 1;
-    } else if(!config.keys[0]) {
-      latch = 0; 
+    } else if (!config.keys[0]) {
+      latch = 0;
     }
-    if(act >= 21){
+    if (act >= 21) {
       text("YAY :)", -30, 100);
       objectiveComplete = true;
-    } 
+    }
   }
 }
