@@ -8,18 +8,20 @@ class MiniGames {
   MiniGame alienPolitician = new AlienPolitician(true, "AlienPolitician", 3000);
   MiniGame lightChallenge = new LightChallenge(false, "LightChallenge", 4000);
   MiniGame circleFill = new CircleFill(false, "CircleFill", 7000);
+  MiniGame circleFill2 = new CircleFillV2(false, "CircleFill2", 7000);
   MiniGame alienalien = new AlienAlien(false, "AlienAlien", 6000);
   MiniGame lightchase = new LightChasing(false, "LightChase", 6000);
-  int numOfGames = 11;
+  MiniGame theClaw = new TheClaw(false, "TheClaw", 3000);
+  int numOfGames = 13;
   int currentGame;
-  MiniGame[] miniGames = {lightchase, alienalien, testGame, testYourStrength, alienLibrarian, pressAllArrows, cyberspace, spaceShipDefense, alienPolitician, lightChallenge, circleFill};
+  MiniGame[] miniGames = {lightchase, alienalien, testGame, testYourStrength, alienLibrarian, pressAllArrows, cyberspace, spaceShipDefense, alienPolitician, lightChallenge, circleFill, circleFill2, theClaw};
   ArrayList<String> recentGames = new ArrayList<String>();
 
   public void miniGameChooser() {
     int randGame;
     do {
       randGame = (int)random(numOfGames);
-    } while (/*recentGames.contains(miniGames[randGame].name)*/ false);
+    } while (recentGames.contains(miniGames[randGame].name));
     recentGames.add(miniGames[randGame].name);
     this.purgeRecentGames();
     currentGame = randGame;
