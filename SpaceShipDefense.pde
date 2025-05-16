@@ -7,7 +7,7 @@ class SpaceShipDefense extends MiniGame {
   int asteroidsBlocked = 0;
   double astronautYSpeed = 0;
   int startupDelay = 0;
-  Asteroids[] asteroids = new Asteroids[2];
+  Asteroids[] asteroids = new Asteroids[1];
   boolean shipDestroyed = false;
 
   SpaceShipDefense(boolean objStart, String name, double timerLength) {
@@ -98,7 +98,7 @@ class SpaceShipDefense extends MiniGame {
     }
 
     // Complete Minigame
-    if (asteroidsBlocked >= 2) {
+    if (asteroidsBlocked >= 1) {
       objectiveComplete = true;
     } else {
       objectiveComplete = false;
