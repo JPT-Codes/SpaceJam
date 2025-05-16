@@ -10,14 +10,14 @@ class TheClaw extends MiniGame {
   public void reset() {
     super.reset();
     clickOnce = true;
-    
+
     ball.x = random(width/2 - ball.radius - 500, width/2 + ball.radius + 500);
     ball.speed = 20 * config.miniTimerMult;
     ball.randomDirection = (int)random(0, 2);
     ball.startDirection = true;
     ball.grabbed = false;
     ball.missed = false;
-    
+
     claw.y = 3*height/4;
     claw.create = true;
     claw.grab = false;
@@ -74,7 +74,7 @@ class Ball {
     } else if (grabbed) {
       text("LET GO OF ME!", x, height/3 - radius * 1.5);
     }
-    
+
     if (startDirection == true && randomDirection == 0) {
       speed *= -1;
       startDirection = false;
