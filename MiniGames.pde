@@ -12,9 +12,12 @@ class MiniGames {
   MiniGame alienalien = new AlienAlien(false, "AlienAlien", 6000);
   MiniGame lightchase = new LightChasing(false, "LightChase", 6000);
   MiniGame theClaw = new TheClaw(false, "TheClaw", 3000);
-  int numOfGames = 13;
+  MiniGame simonSays = new SimonSays(false, "SimonSays", 5000);
+  MiniGame counter = new Counter(false, "Counter", 5000);
+  MiniGame arrowOrder = new ArrowOrder(false, "ArrowOrder", 5000);
+  int numOfGames = 16;
   int currentGame;
-  MiniGame[] miniGames = {lightchase, alienalien, testGame, testYourStrength, alienLibrarian, pressAllArrows, cyberspace, spaceShipDefense, alienPolitician, lightChallenge, circleFill, circleFill2, theClaw};
+  MiniGame[] miniGames = {arrowOrder, counter, simonSays, lightchase, alienalien, testGame, testYourStrength, alienLibrarian, pressAllArrows, cyberspace, spaceShipDefense, alienPolitician, lightChallenge, circleFill, circleFill2, theClaw};
   ArrayList<String> recentGames = new ArrayList<String>();
 
   public void miniGameChooser() {
