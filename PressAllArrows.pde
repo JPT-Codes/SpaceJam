@@ -15,15 +15,15 @@ class PressAllArrows extends MiniGame {
     textSize(40);
     textAlign(CENTER);
     text("Press up and down arrow keys!", width / 2, height / 5);
-    
+
     // controls
-    boolean upPressed = config.keys[2]; 
+    boolean upPressed = config.keys[2];
     boolean downPressed = config.keys[4];
-    
+
 
     fill(upPressed ? color(0, 255, 0) : color(255, 0, 0));
     text("↑", width / 2 - 100, height / 2);
-    
+
 
     fill(downPressed ? color(0, 255, 0) : color(255, 0, 0));
     text("↓", width / 2 + 50, height / 2);

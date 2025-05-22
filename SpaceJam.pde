@@ -2,7 +2,7 @@ Config config;
 UI ui;
 Splash splash;
 MiniGames gameList;
-int scene = 1;
+int scene = 0;
 
 void settings() {
   fullScreen();
