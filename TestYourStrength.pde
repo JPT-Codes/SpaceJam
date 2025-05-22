@@ -4,15 +4,15 @@ class TestYourStrength extends MiniGame {
   private int latch = 0;
 
   TestYourStrength(boolean objStart, String name, double timerLength) {
-    super(objStart, name, timerLength); //false, testStrength, 3000
+    super(objStart, name, timerLength);
   }
 
   private void zIncrement() {
     if (config.keys[0] && latch == 0) {
       zCount++;
       latch = 1;
-    } else if(!config.keys[0]) {
-      latch = 0;  
+    } else if (!config.keys[0]) {
+      latch = 0;
     }
   }
 

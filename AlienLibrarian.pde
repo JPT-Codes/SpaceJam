@@ -1,4 +1,4 @@
-class AilenLibrarian extends MiniGame {
+class AlienLibrarian extends MiniGame {
   int foundBookYippee = (int) random(0, 5);
   boolean youAlreadyWentFool = false;
   //an array for colors and book names.
@@ -6,7 +6,7 @@ class AilenLibrarian extends MiniGame {
   String[] bookNames = {"red", "blue", "green", "orange", "yellow"};
   String[] controls = {"CTRL", "LEFT", "UP", "RIGHT", "DOWN"};
 
-  AilenLibrarian(boolean objStart, String name, double timerLength) {
+  AlienLibrarian(boolean objStart, String name, double timerLength) {
     super(objStart, name, timerLength);
   }
 

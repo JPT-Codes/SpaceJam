@@ -178,8 +178,6 @@ class AlienPolitician extends MiniGame {
     politician();
     crowd();
     thinkerCrowd();
-
-
     questionDodge();
   }
 }

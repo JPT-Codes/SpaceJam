@@ -24,4 +24,14 @@ class UI {
       text("Time Left: " + time.timeLeft, 105, height - 20);
     }
   }
+
+  void showUI(Timer time) {
+    rectMode(CORNER);
+    textAlign(CENTER, BASELINE);
+    strokeWeight(0);
+    stroke(0);
+    ui.showLives();
+    ui.showLevel();
+    ui.showTimer(time);
+  }
 }
