@@ -6,7 +6,7 @@ class AlienPolitician extends MiniGame {
   int duckTime = 35  ;
   // Text attack variables
   int textSpeed;
-  String[] phrases = {"LIE!", "FAKE!", "BOOO!", "WE WANT THE TRUTH!", "NO MORE TAXES!", "WHAT IS YOUR PLAN??", "NO TAXES! PLEASE!"}; // Array of possible phrases
+  String[] phrases = {"LIE!", "FAKE!", "BOOO!", "WE WANT THE TRUTH!", "NO MORE TAXES!", "WHAT IS YOUR PLAN?", "NO TAXES! PLEASE!", "L (this is an intentional phrase)", "HOW MUCH IS EGG!?"}; // Array of possible phrases
   String attackText = "";  // The current phrase being thrown at the politician
   int textX = -100;        // Starts offscreen (text starts moving from here)
   int textY = 750;         // Fixed Y position for the text
@@ -14,6 +14,10 @@ class AlienPolitician extends MiniGame {
   boolean youOnlyDuckTwice = false;
   boolean politicalLatch = false;
   boolean duckReleased = true;
+
+  boolean wallCheck = false;
+  int thinkingColor = 0;
+  int rand = (int)random(0, 1);
 
 
   // Ducking variables
@@ -38,6 +42,9 @@ class AlienPolitician extends MiniGame {
     startDuck = 0;
     youOnlyDuckTwice = false;
     currentY = 710;
+    thinkingColor = 0;
+    wallCheck = false;
+    rand = (int)random(0, 50);
   }
 
   private void checkDuck() {
@@ -113,6 +120,22 @@ class AlienPolitician extends MiniGame {
     }
   }
 
+
+  private void thinkerCrowd() {
+    if (!wallCheck) {
+      if (rand == 12) {
+        thinkingColor = 200;
+      } else {
+        wallCheck = true;
+      }
+    }
+
+
+
+
+    fill(0, thinkingColor, thinkingColor);
+    rect(996, 1000, 60, 425);
+  }
   private void questionDodge() {
     // Check if the text attack is active and move it across the screen
     if (textActive) {
@@ -154,7 +177,7 @@ class AlienPolitician extends MiniGame {
     ducker();
     politician();
     crowd();
-
+    thinkerCrowd();
     questionDodge();
   }
 }
