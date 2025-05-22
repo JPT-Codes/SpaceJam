@@ -1,0 +1,62 @@
+class Counter extends MiniGame {
+  int count = 1;
+  boolean promptDisplayed = false;
+  boolean pressed = false;
+  boolean earlyPress = false;
+  long startTime;
+  long countTime; 
+  final int COUNT_DELAY = 1250; 
+  Counter(boolean objStart, String name, double timerLength) {
+    super(objStart, name, timerLength);
+  }
+  public void reset() {
+    super.reset();
+    count = 1;
+    promptDisplayed = false;
+    pressed = false;
+    earlyPress = false;
+    startTime = 0;
+    countTime = millis();
+  }
+  public void play() {
+    super.play();
+    background(200, 200, 250);
+    textSize(50);
+    textAlign(CENTER);
+    if (count <= 2) {
+      if (millis() - countTime >= COUNT_DELAY) { 
+        count++;
+        countTime = millis(); 
+      }
+      text(count, width / 2, height / 3);
+      if (config.keys[0]) {
+        earlyPress = true;
+      }
+    } 
+    if (count > 2 && !promptDisplayed) {
+      promptDisplayed = true;
+      startTime = millis();
+    } 
+    if (promptDisplayed) {
+      text("Press CTRL!", width / 2, height / 3 + 50);
+      if (millis() - startTime <= 1000) { 
+        if (config.keys[0]) {
+          pressed = true;
+        }
+     }
+      if (pressed) {
+        objectiveComplete = true; 
+        background(0, 200, 0);
+        text("WINNER!", width / 2, height / 2 + 100);
+      } else if (earlyPress) {
+        background(200, 0, 0);
+        text("TOO EARLY!", width / 2, height / 2 + 100);
+        objectiveComplete = false; 
+        return; 
+      } else if (millis() - startTime > 1000) {
+        background(200, 0, 0);
+        text("TOO LATE!", width / 2, height / 2 + 100);
+      }
+    }
+  }
+}
