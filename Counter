@@ -5,7 +5,7 @@ class Counter extends MiniGame {
   boolean earlyPress = false;
   long startTime;
   long countTime; 
-  final int COUNT_DELAY = 1500; 
+  final int COUNT_DELAY = 1250; 
   Counter(boolean objStart, String name, double timerLength) {
     super(objStart, name, timerLength);
   }
